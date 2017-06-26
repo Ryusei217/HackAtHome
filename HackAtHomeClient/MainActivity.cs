@@ -4,7 +4,7 @@ using Android.OS;
 
 namespace HackAtHomeClient
 {
-    [Activity(Label = "HackAtHomeClient", MainLauncher = true, Icon = "@drawable/hath_icon")]
+    [Activity(Label = "@string/ApplicationName", MainLauncher = true, Icon = "@drawable/hath_icon")]
     public class MainActivity : Activity
     {
         protected override void OnCreate(Bundle bundle)
