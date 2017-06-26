@@ -5,6 +5,7 @@ using HackAtHome.Entities;
 using System.Threading.Tasks;
 using System.Net.Http;
 using Newtonsoft.Json;
+using System.Collections.Generic;
 
 namespace HackAtHome.SAL
 {
@@ -74,6 +75,49 @@ namespace HackAtHome.SAL
                 }
 
                 return Result;
+            }
+        }
+
+        /// <summary>
+        /// Obtiene el detalle de una evidencia
+        /// </summary>
+        /// <param name="token">Token de autenticacion del usuario</param>
+        /// <returns>Una lista con las evidencias</returns>
+        public async Task<List<Evidence>> GetEvidencesAsync(string token)
+        {
+            List<Evidence> Evidences = null;
+
+            // Direccion base de la API
+            string WebAPIBaseAddress = "https://ticapacitacion.com/hackathome";
+
+            // URL de la evidencia
+            string URI = $"{WebAPIBaseAddress}/api/evidence/getevidencebyid?token={token}";
+
+            // Utilizamos el objeto System.Net.HttpClient para consumir el servicio REST
+            using (var Client = new HttpClient())
+            {
+                Client.DefaultRequestHeaders.Accept.Clear();
+                Client.DefaultRequestHeaders.Accept.Add(new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json"));
+
+                try
+                {
+                    // Realizamos la peticion GET
+                    HttpResponseMessage Response = await Client.GetAsync(URI);                    
+
+                    if (Response.StatusCode == System.Net.HttpStatusCode.OK)
+                    {
+                        // Deserializaos el resultado
+                        var ResultWebApi = await Response.Content.ReadAsStringAsync();
+                        Evidences = JsonConvert.DeserializeObject<List<Evidence>>(ResultWebApi);
+                    }
+                }
+                catch (Exception)
+                {
+                    // Manejo de la Excepcion
+                    Evidences = new List<Evidence>();
+                }
+
+                return Evidences;
             }
         }
 
