@@ -2,4 +2,46 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="match_parent" />
+    android:layout_height="match_parent">
+    <TextView
+        android:text="@string/EmailText"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/textViewEmail"
+        android:layout_marginRight="16.0dp"
+        android:layout_marginLeft="16.0dp"
+        android:layout_marginTop="16.0dp"
+        android:layout_marginBottom="1.0dp" />
+    <EditText
+        android:inputType="textEmailAddress"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/editText1"
+        android:layout_marginRight="16.0dp"
+        android:layout_marginLeft="16.0dp" />
+    <TextView
+        android:text="@string/PasswordText"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/textViewPassword"
+        android:layout_marginRight="16.0dp"
+        android:layout_marginLeft="16.0dp"
+        android:layout_marginTop="16.0dp"
+        android:layout_marginBottom="1.0dp" />
+    <EditText
+        android:inputType="textPassword"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/editText2"
+        android:layout_marginRight="16.0dp"
+        android:layout_marginLeft="16.0dp" />
+    <Button
+        android:text="@string/ValidateButtonText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/buttonValidate"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="16.5dp" />
+</LinearLayout>
