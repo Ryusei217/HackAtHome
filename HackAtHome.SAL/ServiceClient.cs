@@ -1,14 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Text;
 
-using Android.App;
-using Android.Content;
-using Android.OS;
-using Android.Runtime;
-using Android.Views;
-using Android.Widget;
 using HackAtHome.Entities;
 using System.Threading.Tasks;
 using System.Net.Http;
@@ -78,6 +70,54 @@ namespace HackAtHome.SAL
                         FullName = "Ocurrio un error inesperado",
                         Status = Status.Error,
                         Token = ""
+                    };
+                }
+
+                return Result;
+            }
+        }
+
+        /// <summary>
+        /// Obtiene el detalle de una evidencia
+        /// </summary>
+        /// <param name="token">Tokend de autenticacion del usuario</param>
+        /// <param name="evidenceID">Identificador de la evidencia</param>
+        /// <returns>Informacion de la evidencia</returns>
+        public async Task<EvidenceDetail> GetEvidenceByIdAsync(string token, int evidenceID)
+        {
+            EvidenceDetail Result = null;
+
+            // Direccion base de la API
+            string WebAPIBaseAddress = "https://ticapacitacion.com/hackathome";
+
+            // URL de la evidencia
+            string URI = $"{WebAPIBaseAddress}/api/evidence/getevidencebyid?token={token}&&evidenceid={evidenceID}";
+
+            // Utilizamos el objeto System.Net.HttpClient para consumir el servicio REST
+            using (var Client = new HttpClient())
+            { 
+                Client.DefaultRequestHeaders.Accept.Clear(); 
+                Client.DefaultRequestHeaders.Accept.Add(new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json"));
+
+                try
+                {
+                    // Realizamos la peticion GET
+                    HttpResponseMessage Response = await Client.GetAsync(URI);
+                    var ResultWebApi = await Response.Content.ReadAsStringAsync();
+
+                    if (Response.StatusCode == System.Net.HttpStatusCode.OK)
+                    {
+                        // Deserializaos el resultado
+                        Result = JsonConvert.DeserializeObject<EvidenceDetail>(ResultWebApi);
+                    }
+                }
+                catch (Exception)
+                {
+                    // Manejo de la Excepcion
+                    Result = new EvidenceDetail
+                    {
+                        Description = "Ocurrio un error inesperado",
+                        Url = ""
                     };
                 }
 
