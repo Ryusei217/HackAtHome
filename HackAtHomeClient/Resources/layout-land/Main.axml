@@ -42,7 +42,7 @@
             android:layout_marginTop="17.5dp" />
         <EditText
             android:inputType="textPassword"
-            android:id="@+id/editText2"
+            android:id="@+id/editTextPassword"
             android:layout_width="match_parent"
             android:layout_height="match_parent" />
     </LinearLayout>
@@ -53,4 +53,5 @@
         android:id="@+id/buttonValidate"
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="16.5dp" />
+<!-- Property Change Conflict | id:@+id/editText1 | id=@+id/editTextEmail -->
 </LinearLayout>
