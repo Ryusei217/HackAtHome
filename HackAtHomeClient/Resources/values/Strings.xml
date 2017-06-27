@@ -5,4 +5,5 @@
   <string name="PasswordText">Contraseña:</string>
   <string name="ValidateButtonText">Validar</string>
   <string name="EvidenceText">Evidencias</string>
+  <string name="DescriptionText">Descripción</string>
 </resources>

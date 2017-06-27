@@ -51,9 +51,14 @@
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Xml" />
+    <Reference Include="UrlImageViewHelper">
+      <HintPath>..\Components\urlimageviewhelper-1.0.4.2\lib\android\UrlImageViewHelper.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="EvidenceDetailActivity.cs" />
     <Compile Include="EvidenceListActivity.cs" />
+    <Compile Include="Fragments\EvidenceDetailFragment.cs" />
     <Compile Include="Fragments\EvidenceFragment.cs" />
     <Compile Include="MainActivity.cs" />
     <Compile Include="Resources\Resource.Designer.cs" />
@@ -69,6 +74,9 @@
       <SubType>Designer</SubType>
     </AndroidResource>
     <AndroidResource Include="Resources\layout\EvidenceListItem.axml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
+    <AndroidResource Include="Resources\layout\EvidenceDetail.axml">
       <SubType>Designer</SubType>
     </AndroidResource>
   </ItemGroup>
@@ -108,7 +116,9 @@
     <AndroidResource Include="Resources\values-en\Strings.xml" />
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\values-pt\Strings.xml" />
+    <AndroidResource Include="Resources\values-pt\Strings.xml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\HackAtHome.CustomAdapters\HackAtHome.CustomAdapters.csproj">
