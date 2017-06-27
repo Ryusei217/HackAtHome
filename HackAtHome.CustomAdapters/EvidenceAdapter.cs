@@ -51,7 +51,7 @@ namespace HackAtHome.CustomAdapters
         {
             get
             {
-                return Items.Count;
+                return Items == null ? 0 : Items.Count;
             }
         }
 

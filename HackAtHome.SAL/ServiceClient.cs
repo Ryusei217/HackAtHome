@@ -102,7 +102,7 @@ namespace HackAtHome.SAL
                 try
                 {
                     // Realizamos la peticion GET
-                    HttpResponseMessage Response = await Client.GetAsync(URI);                    
+                    HttpResponseMessage Response = await Client.GetAsync(URI);
 
                     if (Response.StatusCode == System.Net.HttpStatusCode.OK)
                     {
