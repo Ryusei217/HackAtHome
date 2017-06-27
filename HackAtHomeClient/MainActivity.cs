@@ -31,12 +31,35 @@ namespace HackAtHomeClient
 
             ResultInfo Result = await ServiceClient.AutenticateAsync(emailEditText.Text, passwordEditText.Text);
 
+            // Creamos un dialogo para mostrar el resultado de la validacion
             Android.App.AlertDialog.Builder Builder = new AlertDialog.Builder(this);
             AlertDialog Alert = Builder.Create();
-            Alert.SetTitle("Resultado de la Verificación");
-            Alert.SetIcon(Resource.Drawable.Icon);
-            Alert.SetMessage($"{Result.Status}\n{Result.FullName}\n{Result.Token}");
-            Alert.SetButton("Ok", (s, ev) => { });
+            Alert.SetTitle("Resultado de la Validación");
+            Alert.SetIcon(Resource.Drawable.hath_icon);
+
+            // Mostramos un mensaje personalizado
+            string message;
+
+            if(Result.Status == Status.Success || Result.Status == Status.AllSuccess)
+            {
+                message = $"Bienvenido {Result.FullName}";
+            }
+            else
+            {
+                message = $"Error:\n{Result.Status}\n{Result.FullName}";
+            }
+
+            // Finalizamos el dialogo y al precionar el boton OK si todo fue satisfactorio pasamos a la otra actividad
+            Alert.SetMessage(message);
+            Alert.SetButton("Ok", (s, ev) => {
+                if (Result.Status == Status.Success || Result.Status == Status.AllSuccess)
+                {
+                    var Intent = new Android.Content.Intent(this, typeof(EvidenceListActivity));
+                    Intent.PutExtra("FullName", Result.FullName);
+                    Intent.PutExtra("Token", Result.Token);
+                    StartActivity(Intent);
+                }
+            });
             Alert.Show();
         }
     }

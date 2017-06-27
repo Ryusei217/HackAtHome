@@ -91,7 +91,7 @@ namespace HackAtHome.SAL
             string WebAPIBaseAddress = "https://ticapacitacion.com/hackathome";
 
             // URL de la evidencia
-            string URI = $"{WebAPIBaseAddress}/api/evidence/getevidencebyid?token={token}";
+            string URI = $"{WebAPIBaseAddress}/api/evidence/getevidences?token={token}";
 
             // Utilizamos el objeto System.Net.HttpClient para consumir el servicio REST
             using (var Client = new HttpClient())

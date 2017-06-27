@@ -53,6 +53,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="EvidenceListActivity.cs" />
     <Compile Include="MainActivity.cs" />
     <Compile Include="Resources\Resource.Designer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -62,6 +63,12 @@
     <None Include="Resources\AboutResources.txt" />
     <None Include="Assets\AboutAssets.txt" />
     <AndroidResource Include="Resources\layout-land\Main.axml" />
+    <AndroidResource Include="Resources\layout\EvidenceList.axml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
+    <AndroidResource Include="Resources\layout\EvidenceListItem.axml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\layout\Main.axml">
@@ -102,6 +109,10 @@
     <AndroidResource Include="Resources\values-pt\Strings.xml" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\HackAtHome.CustomAdapters\HackAtHome.CustomAdapters.csproj">
+      <Project>{4d918860-059b-4a04-bb92-efe00e9ae143}</Project>
+      <Name>HackAtHome.CustomAdapters</Name>
+    </ProjectReference>
     <ProjectReference Include="..\HackAtHome.Entities\HackAtHome.Entities.csproj">
       <Project>{5dbe7bcf-7f47-4cee-b906-97a60bda9522}</Project>
       <Name>HackAtHome.Entities</Name>

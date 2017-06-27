@@ -4,4 +4,5 @@
   <string name="EmailText">E-Mail:</string>
   <string name="PasswordText">Senha:</string>
   <string name="ValidateButtonText">Validar</string>
+  <string name="EvidenceText">Evidência</string>
 </resources>

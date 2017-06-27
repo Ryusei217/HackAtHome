@@ -26,6 +26,8 @@ namespace HackAtHomeClient
 		
 		public static void UpdateIdValues()
 		{
+			global::HackAtHome.CustomAdapters.Resource.String.ApplicationName = global::HackAtHomeClient.Resource.String.ApplicationName;
+			global::HackAtHome.CustomAdapters.Resource.String.Hello = global::HackAtHomeClient.Resource.String.Hello;
 			global::HackAtHome.Entities.Resource.String.ApplicationName = global::HackAtHomeClient.Resource.String.ApplicationName;
 			global::HackAtHome.Entities.Resource.String.Hello = global::HackAtHomeClient.Resource.String.Hello;
 			global::HackAtHome.SAL.Resource.Animation.slide_in_right = global::HackAtHomeClient.Resource.Animation.slide_in_right;
@@ -95,29 +97,44 @@ namespace HackAtHomeClient
 		public partial class Id
 		{
 			
-			// aapt resource value: 0x7f060005
-			public const int buttonValidate = 2131099653;
+			// aapt resource value: 0x7f06000b
+			public const int buttonValidate = 2131099659;
 			
-			// aapt resource value: 0x7f060007
-			public const int editText1 = 2131099655;
-			
-			// aapt resource value: 0x7f060002
-			public const int editTextEmail = 2131099650;
-			
-			// aapt resource value: 0x7f060004
-			public const int editTextPassword = 2131099652;
-			
-			// aapt resource value: 0x7f060006
-			public const int linearLayout1 = 2131099654;
+			// aapt resource value: 0x7f06000c
+			public const int editText1 = 2131099660;
 			
 			// aapt resource value: 0x7f060008
-			public const int linearLayout2 = 2131099656;
+			public const int editTextEmail = 2131099656;
 			
-			// aapt resource value: 0x7f060001
-			public const int textViewEmail = 2131099649;
+			// aapt resource value: 0x7f06000a
+			public const int editTextPassword = 2131099658;
+			
+			// aapt resource value: 0x7f060004
+			public const int linearLayout1 = 2131099652;
+			
+			// aapt resource value: 0x7f06000d
+			public const int linearLayout2 = 2131099661;
 			
 			// aapt resource value: 0x7f060003
-			public const int textViewPassword = 2131099651;
+			public const int listViewEvidence = 2131099651;
+			
+			// aapt resource value: 0x7f060007
+			public const int textViewEmail = 2131099655;
+			
+			// aapt resource value: 0x7f060002
+			public const int textViewEvidence = 2131099650;
+			
+			// aapt resource value: 0x7f060006
+			public const int textViewEvidenceStatus = 2131099654;
+			
+			// aapt resource value: 0x7f060005
+			public const int textViewEvidenceTitle = 2131099653;
+			
+			// aapt resource value: 0x7f060001
+			public const int textViewFullName = 2131099649;
+			
+			// aapt resource value: 0x7f060009
+			public const int textViewPassword = 2131099657;
 			
 			// aapt resource value: 0x7f060000
 			public const int webview = 2131099648;
@@ -139,7 +156,13 @@ namespace HackAtHomeClient
 			public const int activity_webview = 2130903040;
 			
 			// aapt resource value: 0x7f030001
-			public const int Main = 2130903041;
+			public const int EvidenceList = 2130903041;
+			
+			// aapt resource value: 0x7f030002
+			public const int EvidenceListItem = 2130903042;
+			
+			// aapt resource value: 0x7f030003
+			public const int Main = 2130903043;
 			
 			static Layout()
 			{
@@ -159,6 +182,9 @@ namespace HackAtHomeClient
 			
 			// aapt resource value: 0x7f050003
 			public const int EmailText = 2131034115;
+			
+			// aapt resource value: 0x7f050006
+			public const int EvidenceText = 2131034118;
 			
 			// aapt resource value: 0x7f050000
 			public const int Hello = 2131034112;
