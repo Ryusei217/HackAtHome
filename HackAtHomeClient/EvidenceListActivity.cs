@@ -37,8 +37,15 @@ namespace HackAtHomeClient
                 FragmentTransaction.Commit();
             }
 
-
             LoadData();            
+        }
+
+        protected override void OnPause()
+        {
+            // Guardamos el estado del ListView antes de pausar la aplicacion
+            var EvidenceListView = FindViewById<ListView>(Resource.Id.listViewEvidence);
+            Data.EvidenceListState = EvidenceListView.OnSaveInstanceState();
+            base.OnPause();            
         }
 
         /// <summary>
@@ -58,13 +65,12 @@ namespace HackAtHomeClient
 
                 try
                 {
-                    var list = await ServiceClient.GetEvidencesAsync(Data.Token);
-                    Data.EvidenceList = list.ToList();
+                    Data.EvidenceList = await ServiceClient.GetEvidencesAsync(Data.Token);
                 }
                 catch (Exception ex)
                 {
                     // Creamos un dialogo para mostrar la excepcion
-                    ErrorDialog("Error", Resource.Drawable.hath_icon, ex.Message);
+                    ErrorDialog(ex.Message);
                     Data.EvidenceList = new List<HackAtHome.Entities.Evidence>();
                 }
             }            
@@ -73,27 +79,27 @@ namespace HackAtHomeClient
             var FullNameTextView = FindViewById<TextView>(Resource.Id.textViewFullName);
             FullNameTextView.Text = Data.FullName;
 
+            // Cargamos la informacion en el ListView
             var EvidenceListView = FindViewById<ListView>(Resource.Id.listViewEvidence);
-            try
-            {
+            EvidenceListView.Adapter = new EvidenceAdapter(
+                this, Data.EvidenceList, Resource.Layout.EvidenceListItem,
+                Resource.Id.textViewEvidenceTitle, Resource.Id.textViewEvidenceStatus
+            );
 
-                EvidenceListView.Adapter = new EvidenceAdapter(
-                    this, Data.EvidenceList, Resource.Layout.EvidenceListItem,
-                    Resource.Id.textViewEvidenceTitle, Resource.Id.textViewEvidenceStatus
-                );
-            }
-            catch (Exception ex)
+            // Restauramos el estado del ListView si existe
+            if(Data.EvidenceListState != null)
             {
-                // Creamos un dialogo para mostrar la excepcion
-                ErrorDialog("Error", Resource.Drawable.hath_icon, ex.Message);
-                EvidenceListView.Adapter = new EvidenceAdapter(
-                    this, new List<HackAtHome.Entities.Evidence>(), Resource.Layout.EvidenceListItem,
-                    Resource.Id.textViewEvidenceTitle, Resource.Id.textViewEvidenceStatus
-                );
+                EvidenceListView.OnRestoreInstanceState(Data.EvidenceListState);
             }
         }
 
-        private void ErrorDialog(string title, int iconResource, string message)
+        /// <summary>
+        /// Genera un dialog de error para la aplicacion
+        /// </summary>
+        /// <param name="title">Titulo a proporicionar </param>
+        /// <param name="iconResource">Icono del dialogo</param>
+        /// <param name="message">Mensaje a mostrar</param>
+        private void ErrorDialog(string title = "Error", int iconResource = Resource.Drawable.hath_icon, string message = "Ocurrio un error inesperado")
         {
             Android.App.AlertDialog.Builder Builder = new AlertDialog.Builder(this);
             AlertDialog Alert = Builder.Create();

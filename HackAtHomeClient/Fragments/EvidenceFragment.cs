@@ -21,6 +21,8 @@ namespace HackAtHomeClient.Fragments
 
         public List<Evidence> EvidenceList { get; set; }
 
+        public IParcelable EvidenceListState { get; set; }
+
         public override string ToString()
         {
             return $"{FullName} - {Token}";
