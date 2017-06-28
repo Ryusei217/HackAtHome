@@ -46,14 +46,18 @@ namespace HackAtHomeClient
         private async void LoadData()
         {
             // Si no existe un token intentamos recargar la informacion
-            if (Data.Evidence.EvidenceID < 1)
+            if (Data.Evidence == null)
             {
                 // Recuperamos la informaicon pasada desde la otra actividad
                 Data.FullName = Intent.GetStringExtra("FullName");
                 Data.Token = Intent.GetStringExtra("Token");
-                Data.Evidence.EvidenceID = Intent.GetIntExtra("EvidenceID", 0);
-                Data.Evidence.Title = Intent.GetStringExtra("EvidenceTitle");
-                Data.Evidence.Status = Intent.GetStringExtra("EvidenceStatus");
+
+                Data.Evidence = new HackAtHome.Entities.Evidence()
+                {
+                    EvidenceID = Intent.GetIntExtra("EvidenceID", 0),
+                    Title = Intent.GetStringExtra("EvidenceTitle"),
+                    Status = Intent.GetStringExtra("EvidenceStatus")
+                };
 
                 // Recuperamos la lista de las evidencias
                 var ServiceClient = new ServiceClient();

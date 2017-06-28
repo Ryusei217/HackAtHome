@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 using Android.App;
 using Android.Views;
@@ -37,12 +38,7 @@ namespace HackAtHome.CustomAdapters
         /// </summary>
         /// <param name="position">Posicion del elemento dentro de la lista</param>
         /// <returns></returns>
-        public override Evidence this[int position] {
-            get
-            {
-                return Items[position];
-            }
-        }
+        public override Evidence this[int position] => Items[position];
 
         /// <summary>
         /// Devuelve el numero de elementos en la lista

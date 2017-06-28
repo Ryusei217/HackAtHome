@@ -19,6 +19,7 @@ namespace HackAtHomeClient
     public class EvidenceListActivity : Activity
     {
         private EvidenceFragment Data;
+        private ListView EvidenceListView;
 
         protected override void OnCreate(Bundle savedInstanceState)
         {
@@ -35,7 +36,7 @@ namespace HackAtHomeClient
                 var FragmentTransaction = this.FragmentManager.BeginTransaction();
                 FragmentTransaction.Add(Data, "Data");
                 FragmentTransaction.Commit();
-            }
+            }                        
 
             LoadData();            
         }
@@ -43,7 +44,7 @@ namespace HackAtHomeClient
         protected override void OnPause()
         {
             // Guardamos el estado del ListView antes de pausar la aplicacion
-            var EvidenceListView = FindViewById<ListView>(Resource.Id.listViewEvidence);
+            EvidenceListView = FindViewById<ListView>(Resource.Id.listViewEvidence);
             Data.EvidenceListState = EvidenceListView.OnSaveInstanceState();
             base.OnPause();            
         }
@@ -80,17 +81,34 @@ namespace HackAtHomeClient
             FullNameTextView.Text = Data.FullName;
 
             // Cargamos la informacion en el ListView
-            var EvidenceListView = FindViewById<ListView>(Resource.Id.listViewEvidence);
-            EvidenceListView.Adapter = new EvidenceAdapter(
+            var EvidenceAdapter = new EvidenceAdapter(
                 this, Data.EvidenceList, Resource.Layout.EvidenceListItem,
                 Resource.Id.textViewEvidenceTitle, Resource.Id.textViewEvidenceStatus
             );
 
+            EvidenceListView = FindViewById<ListView>(Resource.Id.listViewEvidence);
+            EvidenceListView.Adapter = EvidenceAdapter;
+
             // Restauramos el estado del ListView si existe
-            if(Data.EvidenceListState != null)
+            if (Data.EvidenceListState != null)
             {
                 EvidenceListView.OnRestoreInstanceState(Data.EvidenceListState);
-            }
+            }            
+
+            // Establecemos la accion al hacer click en un elemento de la lista
+            EvidenceListView.ItemClick += (s, ev) =>
+            {
+                var Intent = new Android.Content.Intent(this, typeof(EvidenceDetailActivity));
+                Intent.PutExtra("FullName", Data.FullName);
+                Intent.PutExtra("Token", Data.Token);
+
+                // Recuperamos los datos de la lista
+                var Evidence = EvidenceAdapter[ev.Position];
+                Intent.PutExtra("EvidenceID", Evidence.EvidenceID);
+                Intent.PutExtra("EvidenceTitle", Evidence.Title);
+                Intent.PutExtra("EvidenceStatus", Evidence.Status);
+                StartActivity(Intent);
+            };
         }
 
         /// <summary>
