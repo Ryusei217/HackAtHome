@@ -37,13 +37,14 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/webViewContent"
-        android:layout_marginRight="25dp"
-        android:layout_marginLeft="25dp" />
+        android:layout_marginRight="15dp"
+        android:layout_marginLeft="15dp" />
     <ImageView
-        android:src="@android:drawable/ic_menu_gallery"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/imageViewEvidence"
-        android:layout_marginRight="25dp"
-        android:layout_marginLeft="25dp" />
+        android:layout_marginRight="15dp"
+        android:layout_marginLeft="15dp"
+        android:scaleType="fitXY"
+        android:adjustViewBounds="true" />
 </LinearLayout>
