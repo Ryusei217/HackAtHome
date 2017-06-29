@@ -30,6 +30,15 @@ namespace HackAtHomeClient
             var passwordEditText = FindViewById<EditText>(Resource.Id.editTextPassword);
 
             ResultInfo Result = await ServiceClient.AutenticateAsync(emailEditText.Text, passwordEditText.Text);
+            var MicrosoftEvidence = new LabItem
+            {
+                Email = emailEditText.Text,
+                Lab = "Hack@Home",
+                DeviceId = Android.Provider.Settings.Secure.GetString(ContentResolver, Android.Provider.Settings.Secure.AndroidId)
+            };
+
+            var MicrosoftClient = new MicrosoftServiceClient();
+            await MicrosoftClient.SendEvidence(MicrosoftEvidence);
 
             // Creamos un dialogo para mostrar el resultado de la validacion
             Android.App.AlertDialog.Builder Builder = new AlertDialog.Builder(this);
